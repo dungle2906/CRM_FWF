@@ -18,7 +18,7 @@ public class Address extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
+    @Column(name = "id")
     private Integer id;
 
     @Column(length = 255)
@@ -38,4 +38,7 @@ public class Address extends BaseEntity {
 
     @Column(length = 50)
     private String city;
+
+    @OneToOne(mappedBy = "address")
+    private User user;
 }

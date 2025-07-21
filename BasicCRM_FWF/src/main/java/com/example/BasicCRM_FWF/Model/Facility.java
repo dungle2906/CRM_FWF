@@ -1,11 +1,10 @@
 package com.example.BasicCRM_FWF.Model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
@@ -18,7 +17,7 @@ public class Facility extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "facility_id")
+    @Column(name = "id")
     private Integer id;
 
     @Column
@@ -34,8 +33,21 @@ public class Facility extends BaseEntity {
     private String region;
 
     @Column
-    private String statusOpening;
+    private StatusOpening statusOpening;
 
-    @Column(columnDefinition = "SHORT CHECK (`price` >= 0)")
-    private short totalBedService;
+    @Column(columnDefinition = "INT CHECK (`TotalServiceBed` >= 0)")
+    private Integer totalBedService;
+
+    public enum StatusOpening {
+        OPENING,
+        CLOSED,
+        MAINTENANCE,
+    }
+
+    @OneToMany(mappedBy = "facility")
+    private List<User> user;
+
+    @OneToMany(mappedBy = "facility", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Employee> employees;
 }
