@@ -1,4 +1,7 @@
 package com.example.BasicCRM_FWF.Repository;
 
-public class DebtsRepo {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface DebtsRepo {
 }
