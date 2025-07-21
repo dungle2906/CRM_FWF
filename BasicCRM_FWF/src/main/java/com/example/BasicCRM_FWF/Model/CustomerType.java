@@ -24,7 +24,7 @@ public class CustomerType extends BaseEntity {
     private String customerType;
 
     @Column(columnDefinition = "INT CHECK ('priceThreshold >= 0')")
-    private double priceThreshold;
+    private BigDecimal priceThreshold;
 
     @Column
     private String colorPresent;

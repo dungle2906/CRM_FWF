@@ -1,7 +1,7 @@
 package com.example.BasicCRM_FWF.Service;
 
 import com.example.BasicCRM_FWF.DTO.SalesOrder;
-import com.example.BasicCRM_FWF.Repository.FileRepository;
+import com.example.BasicCRM_FWF.Repository.*;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.*;
@@ -16,7 +16,13 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class FileService {
 
-    private final FileRepository fileRepository;
+    private final FileRepository fileRepo;
+    private final FacilityRepo facilityRepo;
+    private final UserRepo userRepo;
+    private final OrderRepo orderRepo;
+    private final PaymentMethodRepo paymentMethodRepo;
+    private final ServicePackageRepo servicePackageRepo;
+    private final CostOnOrderRepo costOnOrderRepo;
 
     public void importFromExcel(MultipartFile file) {
         try (InputStream is = file.getInputStream()) {
